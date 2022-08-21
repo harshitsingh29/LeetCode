@@ -3,14 +3,16 @@ class Solution {
     int countsubmat(vector<int> sum, int n, int k) {
         int t = 0;
         int ans = 0;
+        unordered_map<int,int>mp;
         for(int i = 0; i < n; i++) {
-            t = 0;
-            for(int j = i; j < n; j++) {
-                t += sum[j];
-                if(t == k) {
-                    ans++;
-                }
+            t += sum[i];
+            if(t == k) {
+                ans++;
             }
+            if(mp.find(t - k) != mp.end()) {
+                ans += mp[t-k];
+            }
+            mp[t]++;
         }
         return ans;
     }
