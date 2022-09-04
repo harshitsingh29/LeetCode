@@ -18,7 +18,7 @@ public:
         }
         if(root->val >= maxnode) {
             count += 1;
-            cout<<root->val<<" ";
+            // cout<<root->val<<" ";
             countgoodNodes(root->left, root->val, count);
             countgoodNodes(root->right, root->val, count);
         } 
