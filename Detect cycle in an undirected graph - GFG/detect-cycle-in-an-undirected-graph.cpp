@@ -6,23 +6,16 @@ using namespace std;
 class Solution {
   public:
   
-    bool detect(int src, vector<int> adj[], vector<int>& vis) {
+    bool dfs(int src, int par, vector<int> adj[], vector<int>& vis) {
         vis[src] = 1;
-        queue<pair<int,int>> q;
-        q.push({src, -1});
-        while(!q.empty()) {
-            int node = q.front().first;
-            int parent = q.front().second;
-            q.pop();
-            
-            for(auto it : adj[node]) {
-                if(!vis[it]) {
-                    q.push({it, node});
-                    vis[it] = 1;
-                }
-                else if(it != parent) {
+        for(auto it : adj[src]) {
+            if(!vis[it]) {
+                if(dfs(it, src, adj, vis)) {
                     return true;
                 }
+            }
+            else if(it != par) {
+                return true;
             }
         }
         return false;
@@ -32,7 +25,7 @@ class Solution {
         vector<int> vis(V,0);
         for(int i = 0; i < V; i++) {
             if(!vis[i]) {
-                if(detect(i, adj, vis)) {
+                if(dfs(i, -1, adj, vis)) {
                     return true;
                 }
             }
