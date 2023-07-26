@@ -46,10 +46,6 @@ class Solution{
                 }
             }
         }
-        //cout<<ans<<endl;
-        if(ans.length() == K) {
-            return ans;
-        }
         return ans;
     }
 };
