@@ -19,7 +19,8 @@ class Solution {
             }
         }
         ListNode ans = pq.poll();
-        ListNode temp = ans;
+        ListNode temp;
+        temp=ans;
         while(!pq.isEmpty()) {
             temp.next=pq.poll();
             temp=temp.next;
