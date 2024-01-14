@@ -29,21 +29,30 @@ class Solution {
         if(root == null) {
             return false;
         }
-        if(root.val != subRoot.val) {
-            boolean left = isSubtree(root.left, subRoot);
-            boolean right = isSubtree(root.right, subRoot);
-            return left || right;
+        // if(root.val != subRoot.val) {
+        //     boolean left = isSubtree(root.left, subRoot);
+        //     boolean right = isSubtree(root.right, subRoot);
+        //     return left || right;
+        // }
+        // else {
+        //     boolean ans = isSameTree(root, subRoot);
+        //     if(ans == true) {
+        //         return true;
+        //     }
+        //     else {
+        //         boolean left = isSubtree(root.left, subRoot);
+        //         boolean right = isSubtree(root.right, subRoot);
+        //         return left || right;
+        //     }
+        // }
+
+        if(isSameTree(root, subRoot)) {
+            return true;
         }
         else {
-            boolean ans = isSameTree(root, subRoot);
-            if(ans == true) {
-                return true;
-            }
-            else {
-                boolean left = isSubtree(root.left, subRoot);
-                boolean right = isSubtree(root.right, subRoot);
-                return left || right;
-            }
+            return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
         }
+
+
     }
 }
