@@ -11,11 +11,11 @@ class Solution {
         int n = grid.length;
         int m = grid[0].length;
         int ans = 0;
-        List<Pair<Integer, Integer>> li = List.of(
-            new Pair<>(0,1),
-            new Pair<>(-1,0),
-            new Pair<>(1,0),
-            new Pair<>(0,-1)
+        List<int[]> li = List.of(
+            new int[]{-1,0},
+            new int[]{1,0},
+            new int[]{0,1},
+            new int[]{0,-1}
         );
         boolean[][] vis = new boolean[n][m];
         
@@ -27,9 +27,9 @@ class Solution {
                     q.add(new int[]{i,j});
                     while(!q.isEmpty()) {
                         int[] p = q.poll();
-                        for(Pair<Integer, Integer> it : li) {
-                            int nr = p[0] + it.getKey();
-                            int nc = p[1] + it.getValue();
+                        for(int[] it : li) {
+                            int nr = p[0] + it[0];
+                            int nc = p[1] + it[1];
                             if(inside(nr, nc, n, m) && !vis[nr][nc] && grid[nr][nc] == '1') {
                                 q.add(new int[]{nr, nc});
                                 vis[nr][nc] = true;
