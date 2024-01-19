@@ -23,15 +23,15 @@ class Solution {
             for(int j = 0; j < m; j++) {
                 if(vis[i][j] == false && grid[i][j] == '1') {
                     ans++;
-                    Queue<Pair<Integer, Integer>> q = new LinkedList<>();
-                    q.add(new Pair<>(i,j));
+                    Queue<int[]> q = new LinkedList<>();
+                    q.add(new int[]{i,j});
                     while(!q.isEmpty()) {
-                        Pair<Integer, Integer> p = q.poll();
+                        int[] p = q.poll();
                         for(Pair<Integer, Integer> it : li) {
-                            int nr = p.getKey() + it.getKey();
-                            int nc = p.getValue() + it.getValue();
+                            int nr = p[0] + it.getKey();
+                            int nc = p[1] + it.getValue();
                             if(inside(nr, nc, n, m) && !vis[nr][nc] && grid[nr][nc] == '1') {
-                                q.add(new Pair<>(nr, nc));
+                                q.add(new int[]{nr, nc});
                                 vis[nr][nc] = true;
                             }
                         }
