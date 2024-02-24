@@ -16,7 +16,7 @@ public:
         for(int i = k-1; i < n; i++) {
             sum += nums[i];
             if(mp[nums[i]] == 0) {
-                cout<<nums[i]<<1<<endl;
+                //cout<<nums[i]<<1<<endl;
                 ucount++;
             }
             mp[nums[i]]++;
@@ -26,7 +26,7 @@ public:
             mp[nums[j]]--;
             sum -= nums[j];
             if(mp[nums[j]] == 0) {
-                cout<<nums[j]<<2<<endl;
+                //cout<<nums[j]<<2<<endl;
                 ucount--;
             }
             j++;
