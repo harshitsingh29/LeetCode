@@ -1,27 +1,28 @@
 class Solution {
 public:
-
-    set<vector<int>> st;
-    void fun(int i, vector<int>ans, int n, vector<int>& nums) {
-        if(i == n) {
-            sort(ans.begin(), ans.end());
-            st.insert(ans);
-            return;
+    
+    void findsubset(int ind, vector<int>&ds, vector<vector<int>>&ans, vector<int>&nums, int n)
+    {
+        ans.push_back(ds);
+        // for(int i = 0; i < ds.size(); i++) {
+        //     cout<<ds[i]<<" ";
+        // }
+        // cout<<endl;
+        for(int  i = ind; i < n; i++)
+        {
+            if(i!=ind and nums[i] == nums[i - 1]) continue;
+            ds.push_back(nums[i]);
+            findsubset(i + 1, ds, ans, nums, n);
+            ds.pop_back();
         }
-        ans.push_back(nums[i]);
-        fun(i+1,ans,n,nums);
-        ans.pop_back();
-        fun(i+1,ans,n,nums);
-        return;
     }
-
+    
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        vector<int>ans;
-        vector<vector<int>> res;
-        fun(0,ans,nums.size(),nums);
-        for(auto it : st) {
-            res.push_back(it);
-        }
-        return res;
+        vector<vector<int>> ans;
+        int n = nums.size();
+        vector<int>ds;
+        sort(nums.begin(),nums.end());
+        findsubset(0, ds, ans, nums, n);
+        return ans;
     }
 };
